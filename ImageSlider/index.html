@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+  
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <div id="arrow-left" class="arrow"></div>
+        <div id="slider">
+          <div class="slide slide1">
+            <div class="slide-content">
+              <span>Image One</span>
+            </div>
+          </div>
+          <div class="slide slide2">
+            <div class="slide-content">
+              <span>Image Two</span>
+            </div>
+          </div>
+          <div class="slide slide3">
+            <div class="slide-content">
+              <span>Image Three</span>
+            </div>
+          </div>
+        </div>
+        <div id="arrow-right" class="arrow"></div>
+      </div>
+      <script>
+      var sliderImage=document.querySelectorAll(".slide");// rreturn array
+
+      var arrowRight=document.querySelector("#arrow-right");
+      var arrowLeftt=document.querySelector("#arrow-left");
+      var current=0;
+// clear all imagess...
+      function reset(){
+          for(let i=0;i<sliderImage.length;i++){
+sliderImage[i].style.display="none";
+          }
+      }
+
+// initialize slider
+      function startSlide(){
+          reset();
+         sliderImage[0].style.display="block";
+      }
+// show previous image
+      function slideLeft(){
+          reset();
+          sliderImage[current-1].style.display="block";
+          current--;
+      }
+
+      // show next
+      function slideRight(){
+          reset();
+          console.log(current+1);
+          sliderImage[current+1].style.display="block";
+          current++;
+      }
+
+      // left arrow click  
+      arrowLeftt.addEventListener("click",()=>{
+          if(current===0)// when left click on first image we want to sipaly the last image therefore set the current to length i.e last image postion
+          {
+              current=sliderImage.length;
+
+          }
+          slideLeft();
+      })
+
+
+      // right arrow click
+
+    arrowRight.addEventListener("click",()=>{
+        if(current===sliderImage.length-1)
+        {
+            current=-1;
+        }
+        slideRight();
+    })
+
+
+      startSlide();
+
+      
+      </script>
+     
+</body>
+</html>
